@@ -154,3 +154,43 @@ input:focus, select:focus {
     from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
 }
+
+.ais-import-section {
+    margin: 20px 0;
+    padding: 15px;
+    border: 2px dashed #a00507;
+    border-radius: 8px;
+    background-color: #fff8f8;
+    text-align: left;
+}
+
+.ais-import-label {
+    display: block;
+    margin-bottom: 10px;
+    color: #a00507;
+    font-weight: 600;
+    font-size: 14px;
+}
+
+.ais-file-input {
+    display: block;
+    width: 100%;
+    font-size: 14px;
+    color: var(--text-main);
+}
+
+.ais-file-input::-webkit-file-upload-button {
+    background: #a00507;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-right: 10px;
+    transition: background 0.2s;
+}
+
+.ais-file-input::-webkit-file-upload-button:hover {
+    background: #800406;
+}

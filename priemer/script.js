@@ -1,3 +1,5 @@
+import { parseAisHtml } from './parser.js';
+
 // Multipliers for grades
 const multipliers = {
     'A': 1.0,
@@ -14,9 +16,10 @@ const calcBtn = document.getElementById('calcBtn');
 const resultBox = document.getElementById('resultBox');
 const resultValue = document.getElementById('resultValue');
 const intrakValue = document.getElementById('intrakValue');
+const aisFileInput = document.getElementById('aisFileInput');
 
 // Creates a new dynamic row in the table
-function createRow(name = '', value = '', grade = 'A') {
+function createRow(name = '', value = '', grade = 'FX') {
     const tr = document.createElement('tr');
     
     tr.innerHTML = `
@@ -37,9 +40,13 @@ function createRow(name = '', value = '', grade = 'A') {
 
     tableBody.appendChild(tr);
     
-    // Event to save after any change
-    tr.querySelectorAll('input, select').forEach(element => {
+    // Events to save after any change
+    tr.querySelectorAll('input').forEach(element => {
         element.addEventListener('input', saveToStorage);
+    });
+
+    tr.querySelectorAll('select').forEach(element => {
+        element.addEventListener('change', saveToStorage);
     });
     
 }
@@ -92,6 +99,7 @@ function deleteRow(button) {
     row.remove();
     saveToStorage();
 }
+window.deleteRow = deleteRow;
 
 function calculateIntrak(average_grade){
     if(average_grade > 3.0) return 0;
@@ -142,6 +150,32 @@ addBtn.addEventListener('click', () => {
     saveToStorage();
 });
 calcBtn.addEventListener('click', calculateResult);
+
+if (aisFileInput) {
+    aisFileInput.addEventListener('change', (e) => {
+        const file = e.target.files[0];
+        if (!file) return;
+
+        const reader = new FileReader();
+        reader.onload = (event) => {
+            // Call parser from parser.js
+            const subjects = parseAisHtml(event.target.result, multipliers);
+
+            if (subjects.length > 0) {
+                // Clear old data
+                tableBody.innerHTML = ''; 
+                subjects.forEach(sub => createRow(sub.name, sub.credits, sub.grade));
+                
+                alert("Successfully imported");
+                saveToStorage();
+                calculateResult();
+            } else {
+                alert("Unsuccessfully imported");
+            }
+        };
+        reader.readAsText(file);
+    });
+}
 
 // Generate 3 initial rows on load or load existed data
 loadFromStorage();

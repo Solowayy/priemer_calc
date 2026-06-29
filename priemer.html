@@ -11,6 +11,11 @@
         <h1>Priemer Calculator</h1>
         <p class="subtitle">Enter the subject name, credits, and grade to calculate your final priemer</p>
         
+        <div class="ais-import-section">
+            <label class="ais-import-label">Import from AiS2 (Moje predmety.html):</label>
+            <input type="file" id="aisFileInput" class="ais-file-input" accept=".html,.htm">
+        </div>
+
         <div class="table-container">
             <table id="subjectsTable">
                 <thead>
@@ -37,6 +42,6 @@
         </div>
     </div>
 
-    <script src="priemer/script.js"></script>
+    <script src="priemer/script.js" type="module"></script>
 </body>
 </html>
