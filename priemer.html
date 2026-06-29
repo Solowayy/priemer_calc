@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Priemer Calculator</title>
+    <link rel="stylesheet" href="priemer/style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Priemer Calculator</h1>
+        <p class="subtitle">Enter the subject name, credits, and grade to calculate your final priemer</p>
+        
+        <div class="table-container">
+            <table id="subjectsTable">
+                <thead>
+                    <tr>
+                        <th>Subject Name</th>
+                        <th>Credits</th>
+                        <th>Grade</th>
+                        <th style="width: 50px;"></th>
+                    </tr>
+                </thead>
+                <tbody id="tableBody">
+                    </tbody>
+            </table>
+        </div>
+
+        <div class="controls">
+            <button id="addBtn" class="btn btn-secondary">Add Subject</button>
+            <button id="calcBtn" class="btn btn-primary">Calculate Priemer</button>
+        </div>
+
+        <div id="resultBox" class="result-box hidden">
+            <h3>Your Priemer: <span id="resultValue">0.00</span></h3>
+            <h3 style="margin-top: 10px; color: #2ecc71;">Intrak Points: <span id="intrakValue">0.00</span></h3>
+        </div>
+    </div>
+
+    <script src="priemer/script.js"></script>
+</body>
+</html>
